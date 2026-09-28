@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+
+/* Theme tokens (space-separated RGB so Tailwind opacity modifiers work) */
+:root {
+  --cream: 251 248 243;
+  --card: 255 255 255;
+  --ink: 43 34 42;
+  --brand: 43 34 42;
+  --purple: 123 44 191;
+  --lavender: 224 170 255;
+}
+body.dark-mode {
+  --cream: 26 22 25;
+  --card: 37 32 38;
+  --ink: 251 248 243;
+  --brand: 123 44 191;
+  --purple: 190 125 255;
+  --lavender: 90 60 120;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: rgb(var(--cream));
+  color: rgb(var(--ink));
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+button, input, select, textarea { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; cursor: pointer; }
+
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Views: one scroll area (#views-viewport), no nested scrolling */
+.view-container { display: none; }
+.view-container.active { display: block; }
+
+/* Visible keyboard focus */
+:focus-visible { outline: 2px solid rgb(var(--purple)); outline-offset: 2px; }
+input:focus-visible, select:focus-visible { outline-offset: 0; }
+
+/* Shared components */
+.field {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: rgb(var(--ink));
+  background: rgb(var(--card));
+  border: 1px solid rgba(120, 100, 110, .25);
+  border-radius: 12px;
+}
+.field.invalid { border-color: #f43f5e; }
+.lbl { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #78716c; margin-bottom: 4px; }
+.err { font-size: 12px; color: #f43f5e; margin-top: 4px; }
+.panel { background: rgb(var(--card)); border: 1px solid rgba(120, 100, 110, .18); border-radius: 18px; padding: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+.panel-title { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: rgb(var(--purple)); margin-bottom: 8px; }
+
+.icon-btn {
+  width: 40px; height: 40px; border-radius: 9999px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 18px; color: rgb(var(--ink));
+  background: rgb(var(--card)); border: 1px solid rgba(120, 100, 110, .25);
+  transition: background-color .2s, color .2s;
+}
+.icon-btn:hover { background: rgb(var(--purple)); color: #fff; }
+.badge {
+  position: absolute; top: -4px; right: -4px; min-width: 18px; height: 18px; padding: 0 4px;
+  border-radius: 9999px; color: #fff; font-size: 10px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.btn-primary {
+  width: 100%; min-height: 44px; padding: 10px 16px;
+  background: rgb(var(--brand)); color: #fff; border: 0; border-radius: 12px;
+  font-size: 13px; font-weight: 700;
+  transition: background-color .2s, transform .15s;
+}
+.btn-primary:hover { background: rgb(var(--purple)); }
+.btn-primary:active, .chip:active, .qty-btn:active { transform: scale(.96); }
+.qty-btn {
+  width: 32px; height: 32px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(120, 100, 110, .12); color: rgb(var(--ink)); border: 0;
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto; white-space: nowrap;
+  min-height: 40px; padding: 8px 16px; font-size: 13px; font-weight: 600;
+  color: #78716c; background: rgb(var(--card));
+  border: 1px solid rgba(120, 100, 110, .25); border-radius: 9999px;
+  transition: background-color .2s, color .2s, border-color .2s, transform .15s;
+}
+.chip.rect { border-radius: 12px; }
+.chip.on { background: rgb(var(--brand)); color: #fff; border-color: rgb(var(--brand)); }
+
+/* Products */
+.product-card { transition: transform .25s, box-shadow .25s; }
+.product-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(0,0,0,.08); }
+
+/* Modals */
+.modal { position: fixed; inset: 0; z-index: 60; background: rgba(0,0,0,.55); display: flex; align-items: center; justify-content: center; padding: 16px; overscroll-behavior: contain; }
+.modal.hidden { display: none; }
+.modal-box { position: relative; width: 100%; max-height: calc(100dvh - 32px); overflow-y: auto; background: rgb(var(--card)); border-radius: 24px; padding: 20px; box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+
+/* Toast */
+@keyframes slideIn { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+.toast-animate { animation: slideIn .3s cubic-bezier(.16, 1, .3, 1) both; }
+
+/* Dark mode: only the Tailwind stone utilities that need remapping */
+body.dark-mode .bg-stone-50 { background-color: rgba(255,255,255,.06); }
+body.dark-mode .border-stone-200,
+body.dark-mode .border-stone-100 { border-color: rgba(255,255,255,.12); }
+body.dark-mode .text-stone-400, body.dark-mode .text-stone-500, body.dark-mode .text-stone-600 { color: #b3a9b4; }
+body.dark-mode .chip, body.dark-mode .field, body.dark-mode .icon-btn { border-color: rgba(255,255,255,.15); }
+body.dark-mode .chip.on { border-color: rgb(var(--brand)); }
+body.dark-mode .lbl { color: #b3a9b4; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* Landing: scroll reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.revealed { opacity: 1; transform: none; }
+
+/* Radio "chips" highlight when selected */
+label.chip:has(input:checked) { background: rgb(var(--brand)); color: #fff; border-color: rgb(var(--brand)); }

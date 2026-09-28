@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sugar & Crumbs — Gourmet Pâtisserie Abuja</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: {
+          cream: 'rgb(var(--cream) / <alpha-value>)',
+          card: 'rgb(var(--card) / <alpha-value>)',
+          plum: 'rgb(var(--ink) / <alpha-value>)',
+          brand: 'rgb(var(--brand) / <alpha-value>)',
+          purple: 'rgb(var(--purple) / <alpha-value>)',
+          lavender: 'rgb(var(--lavender) / <alpha-value>)'
+        },
+        fontFamily: { serif: ['"Playfair Display"', 'serif'] }
+      }}
+    };
+  </script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="transition-colors duration-300">
+<div class="w-full h-dvh mx-auto flex flex-col bg-cream relative overflow-hidden md:max-w-3xl lg:max-w-6xl md:border-x md:border-stone-200">
+
+  <!-- HEADER -->
+  <header class="shrink-0 pt-4 px-4 md:px-6 pb-3 bg-cream/90 backdrop-blur-md z-30 border-b border-stone-200 flex flex-col gap-3">
+    <div class="flex items-center justify-between gap-3">
+      <button id="logo-header" class="text-left">
+        <span class="block text-2xl font-serif italic text-plum">Sugar & Crumbs</span>
+        <span class="block text-[11px] uppercase tracking-[0.2em] text-purple font-semibold">Gourmet Pâtisserie • Abuja</span>
+      </button>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold">
+        <a href="#" data-nav="landing" class="nav-item text-plum">Home</a>
+        <a href="#" data-nav="home" class="nav-item text-stone-400 hover:text-plum">Menu</a>
+        <a href="#" data-nav="builder" class="nav-item text-stone-400 hover:text-plum">Customizer</a>
+        <a href="#" data-nav="wishlist" class="nav-item text-stone-400 hover:text-plum">Wishlist</a>
+        <a href="#" data-nav="cart" class="nav-item text-stone-400 hover:text-plum">Cart</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button id="theme-toggle-btn" aria-label="Toggle theme" class="icon-btn"><iconify-icon icon="lucide:sun"></iconify-icon></button>
+        <button id="nav-wishlist-btn" aria-label="Wishlist" class="icon-btn relative">
+          <iconify-icon icon="lucide:heart"></iconify-icon>
+          <span id="wishlist-badge" class="badge bg-rose-500 hidden">0</span>
+        </button>
+        <button id="nav-cart-btn" aria-label="Cart" class="icon-btn relative">
+          <iconify-icon icon="lucide:shopping-bag"></iconify-icon>
+          <span id="cart-badge" class="badge bg-purple">0</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="flex gap-2 items-center">
+      <div class="relative flex-1">
+        <iconify-icon icon="lucide:search" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none"></iconify-icon>
+        <input type="search" id="main-search-input" placeholder="Search cakes, slices, donuts, pies..." class="field pl-10">
+      </div>
+      <select id="sort-select" aria-label="Sort products" class="field w-auto cursor-pointer">
+        <option value="default">Sort by</option>
+        <option value="low-high">Price: Low to High</option>
+        <option value="high-low">Price: High to Low</option>
+        <option value="popular">Most Popular</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- VIEWS (single scroll area) -->
+  <main class="flex-1 overflow-y-auto" id="views-viewport">
+
+    <!-- LANDING -->
+    <section id="view-landing" class="view-container active pb-10">
+      <div class="px-4 md:px-6 pt-4">
+        <div class="relative rounded-[2rem] overflow-hidden bg-lavender/20 border border-lavender/40 min-h-[380px] md:min-h-[460px] flex items-center">
+          <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=1200&q=70&auto=format&fit=crop" alt="" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-r from-cream via-cream/85 to-cream/20"></div>
+          <div class="relative px-6 md:px-12 py-10 max-w-xl">
+            <span class="text-[11px] uppercase tracking-[0.2em] text-purple font-bold">Gourmet Pâtisserie • Abuja</span>
+            <h2 class="text-3xl md:text-5xl font-serif text-plum leading-tight mt-2">Freshly baked. Made for your moment.</h2>
+            <p class="text-sm md:text-base text-stone-600 mt-3">Cakes, cupcakes, donuts and craft drinks baked daily. Design your own, or grab a slice from our show glass.</p>
+            <div class="flex flex-wrap gap-3 mt-5">
+              <button data-nav-go="view-home" class="btn-primary !w-auto px-7">Order Now</button>
+              <button data-nav-go="view-builder" class="chip rect">✨ Design your own</button>
+            </div>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-3 mt-4 text-sm font-semibold text-plum">
+          <div class="panel text-center">🛍️ Pickup is always free</div>
+          <div class="panel text-center">🚚 Delivery across Abuja</div>
+          <div class="panel text-center">🕗 Open daily 8am – 9pm</div>
+        </div>
+      </div>
+
+      <div class="px-4 md:px-6 mt-8 reveal">
+        <h3 class="text-xl font-serif text-plum mb-3">Shop by category</h3>
+        <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+          <button data-cat-go="cake" class="panel text-center hover:border-purple"><span class="text-3xl block">🎂</span><span class="text-sm font-semibold">Cakes</span></button>
+          <button data-cat-go="slice" class="panel text-center hover:border-purple"><span class="text-3xl block">🍰</span><span class="text-sm font-semibold">Slices</span></button>
+          <button data-cat-go="cupcake" class="panel text-center hover:border-purple"><span class="text-3xl block">🧁</span><span class="text-sm font-semibold">Cupcakes</span></button>
+          <button data-cat-go="pastry" class="panel text-center hover:border-purple"><span class="text-3xl block">🥧</span><span class="text-sm font-semibold">Pies</span></button>
+          <button data-cat-go="donut" class="panel text-center hover:border-purple"><span class="text-3xl block">🍩</span><span class="text-sm font-semibold">Donuts</span></button>
+          <button data-cat-go="cookie" class="panel text-center hover:border-purple"><span class="text-3xl block">🍪</span><span class="text-sm font-semibold">Cookies</span></button>
+          <button data-cat-go="drink" class="panel text-center hover:border-purple"><span class="text-3xl block">🥤</span><span class="text-sm font-semibold">Drinks</span></button>
+        </div>
+      </div>
+
+      <div class="px-4 md:px-6 mt-8 reveal">
+        <div class="flex justify-between items-end mb-3"><h3 class="text-xl font-serif text-plum">Customer favorites</h3><button data-nav-go="view-home" class="text-sm font-semibold text-purple hover:underline">See full menu →</button></div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4" id="featured-grid"></div>
+      </div>
+
+      <div class="px-4 md:px-6 mt-8 reveal">
+        <div class="panel bg-brand text-white md:flex md:items-center md:justify-between gap-6 !p-6" style="background:rgb(var(--brand))">
+          <div>
+            <h3 class="text-2xl font-serif">Bespoke Treat Studio</h3>
+            <p class="text-sm opacity-80 mt-1 max-w-xl">Customize cakes, cupcakes, donuts and drinks: size, flavor, filling, toppings and a personal message. Show-glass slices and pies are ready-made and can't be customized.</p>
+          </div>
+          <button data-nav-go="view-builder" class="mt-4 md:mt-0 px-6 py-3 bg-white text-plum text-sm font-bold rounded-xl whitespace-nowrap">Start designing 🍰</button>
+        </div>
+        <div class="grid md:grid-cols-3 gap-3 mt-3 text-sm">
+          <div class="panel"><strong class="text-plum">1. Pick your treat</strong><p class="text-stone-500 mt-1">Cake, cupcakes, donuts or a drink.</p></div>
+          <div class="panel"><strong class="text-plum">2. Make it yours</strong><p class="text-stone-500 mt-1">Choose flavors, extras and a message. The price updates live.</p></div>
+          <div class="panel"><strong class="text-plum">3. Pickup or delivery</strong><p class="text-stone-500 mt-1">Book your date. Big custom orders have limited daily slots.</p></div>
+        </div>
+      </div>
+
+      <div class="px-4 md:px-6 mt-8 grid md:grid-cols-2 gap-4 reveal">
+        <div class="panel">
+          <h3 class="text-xl font-serif text-plum mb-1">Delivery across Abuja</h3>
+          <p class="text-sm text-stone-500 mb-3">Pickup is free. Delivery is priced by area.</p>
+          <div id="zones-list" class="divide-y divide-stone-200 text-sm"></div>
+        </div>
+        <div class="panel">
+          <h3 class="text-xl font-serif text-plum mb-1">About Sugar & Crumbs</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">We are a small Abuja pâtisserie baking fresh every morning with quality ingredients. From show-glass slices and hot meat pies to fully custom celebration cakes, everything is made to order and made with care.</p>
+          <p class="text-sm text-stone-600 mt-3">📍 Banex Plaza & Wuse II, Abuja<br>🕗 Daily 8:00 AM – 9:00 PM<br>💬 <a class="text-purple font-semibold" href="https://wa.me/2348000000000" target="_blank" rel="noopener">Chat on WhatsApp</a></p>
+        </div>
+      </div>
+
+      <div class="px-4 md:px-6 mt-8 reveal">
+        <h3 class="text-xl font-serif text-plum mb-3">What customers say</h3>
+        <div class="grid md:grid-cols-3 gap-3" id="reviews-list"></div>
+        <form id="review-form" class="panel mt-4 space-y-3 md:max-w-xl" novalidate>
+          <h4 class="panel-title !mb-0">Leave a review</h4>
+          <div id="star-picker" class="flex gap-1" role="group" aria-label="Star rating">
+            <button type="button" data-star="1" aria-label="1 star" class="text-3xl leading-none" style="color:#d6d3d1">★</button>
+            <button type="button" data-star="2" aria-label="2 stars" class="text-3xl leading-none" style="color:#d6d3d1">★</button>
+            <button type="button" data-star="3" aria-label="3 stars" class="text-3xl leading-none" style="color:#d6d3d1">★</button>
+            <button type="button" data-star="4" aria-label="4 stars" class="text-3xl leading-none" style="color:#d6d3d1">★</button>
+            <button type="button" data-star="5" aria-label="5 stars" class="text-3xl leading-none" style="color:#d6d3d1">★</button>
+          </div>
+          <input type="text" id="review-name" placeholder="Your name" maxlength="30" class="field">
+          <textarea id="review-text" rows="3" maxlength="200" placeholder="Tell us about your order" class="field"></textarea>
+          <button type="submit" class="btn-primary !w-auto px-6">Submit review</button>
+        </form>
+      </div>
+
+      <div class="px-4 md:px-6 mt-8 reveal md:max-w-3xl">
+        <h3 class="text-xl font-serif text-plum mb-3">Questions</h3>
+        <div id="faq-list" class="space-y-2">
+          <div class="panel !p-0"><button class="faq-q w-full flex justify-between items-center text-left p-4 text-sm font-semibold text-plum" aria-expanded="false">How long does a custom cake take?<iconify-icon icon="lucide:plus"></iconify-icon></button><p class="faq-a hidden px-4 pb-4 text-sm text-stone-600">Please order at least 2 days ahead. We take a limited number of custom and bulk orders per day so every cake gets full attention.</p></div>
+          <div class="panel !p-0"><button class="faq-q w-full flex justify-between items-center text-left p-4 text-sm font-semibold text-plum" aria-expanded="false">Can I customize slices and pies?<iconify-icon icon="lucide:plus"></iconify-icon></button><p class="faq-a hidden px-4 pb-4 text-sm text-stone-600">Show-glass slices, meat pies and pastries are ready-made. Cakes, cupcakes, donuts and drinks can all be customized.</p></div>
+          <div class="panel !p-0"><button class="faq-q w-full flex justify-between items-center text-left p-4 text-sm font-semibold text-plum" aria-expanded="false">How much is delivery?<iconify-icon icon="lucide:plus"></iconify-icon></button><p class="faq-a hidden px-4 pb-4 text-sm text-stone-600">Pickup is free. Delivery depends on your area of Abuja, and you'll see the exact fee before you order.</p></div>
+          <div class="panel !p-0"><button class="faq-q w-full flex justify-between items-center text-left p-4 text-sm font-semibold text-plum" aria-expanded="false">Do you have a promo code?<iconify-icon icon="lucide:plus"></iconify-icon></button><p class="faq-a hidden px-4 pb-4 text-sm text-stone-600">Join the newsletter below for our latest codes. Enter yours in the basket before checkout.</p></div>
+        </div>
+      </div>
+
+      <form id="newsletter-form" class="mx-4 md:mx-6 mt-8 panel text-center reveal" novalidate>
+        <h3 class="text-xl font-serif text-plum">Get the sweetest updates 🍓</h3>
+        <div class="flex gap-2 mt-3 max-w-md mx-auto">
+          <input type="email" id="newsletter-email" placeholder="Enter your email" class="field">
+          <button type="submit" class="btn-primary !w-auto px-5">Subscribe</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- MENU -->
+    <section id="view-home" class="view-container pb-10">
+      <nav class="flex gap-2 overflow-x-auto no-scrollbar py-3 px-4 md:px-6" id="category-pills" aria-label="Categories">
+        <button data-category="all" class="category-pill chip on">All Items</button>
+        <button data-category="cake" class="category-pill chip">Cakes</button>
+        <button data-category="slice" class="category-pill chip">Show Glass Slices</button>
+        <button data-category="cupcake" class="category-pill chip">Cupcakes</button>
+        <button data-category="cookie" class="category-pill chip">Cookies</button>
+        <button data-category="pastry" class="category-pill chip">Pies & Pastries</button>
+        <button data-category="donut" class="category-pill chip">Donuts</button>
+        <button data-category="drink" class="category-pill chip">Craft Drinks</button>
+      </nav>
+
+      <div class="px-4 md:px-6 mb-5">
+        <div class="relative w-full h-44 md:h-56 rounded-[2rem] overflow-hidden bg-lavender/20 border border-lavender/40 flex items-center shadow-sm">
+          <img src="https://images.unsplash.com/photo-1535141192574-5d4897c825a1?w=1000&q=70&auto=format&fit=crop" alt="" class="absolute right-0 w-2/3 h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-r from-cream via-cream/70 to-transparent"></div>
+          <div class="relative px-6 md:px-10 w-2/3">
+            <span class="text-[11px] uppercase tracking-widest text-purple font-bold block mb-1">Bespoke Studio</span>
+            <h2 class="text-xl md:text-3xl font-serif text-plum leading-tight">Customize Any Treat</h2>
+            <button id="builder-jump-btn" class="btn-primary mt-3 !w-auto px-5">Design Now 🍰</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-4 md:px-6 flex justify-between items-end mb-3">
+        <h3 class="text-lg font-serif text-plum">Fresh Bakery Display</h3>
+        <span id="product-count-label" class="text-xs text-stone-400"></span>
+      </div>
+
+      <div class="px-4 md:px-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4" id="products-grid"></div>
+
+      <section class="mt-10 mx-4 md:mx-6 px-5 py-6 bg-card rounded-3xl border border-stone-200 shadow-sm text-center">
+        <h4 class="text-base font-serif text-plum font-bold mb-1">Sugar & Crumbs Pâtisserie</h4>
+        <p class="text-xs text-stone-500 mb-4">Banex Plaza & Wuse II, Abuja, FCT</p>
+        <div class="flex justify-center items-center gap-3 mb-4">
+          <a href="https://instagram.com/sugarandcrumbs.abuja" target="_blank" rel="noopener" class="icon-btn" aria-label="Instagram"><iconify-icon icon="lucide:instagram"></iconify-icon></a>
+          <a href="https://wa.me/2348000000000" target="_blank" rel="noopener" class="icon-btn" aria-label="WhatsApp"><iconify-icon icon="lucide:message-circle"></iconify-icon></a>
+          <a href="https://tiktok.com/@sugarandcrumbs" target="_blank" rel="noopener" class="icon-btn" aria-label="TikTok"><iconify-icon icon="lucide:video"></iconify-icon></a>
+          <button id="admin-login-trigger" class="icon-btn" aria-label="Owner login"><iconify-icon icon="lucide:lock"></iconify-icon></button>
+        </div>
+        <p class="text-[11px] uppercase tracking-widest text-stone-400">Open Daily: 8:00 AM – 9:00 PM</p>
+      </section>
+    </section>
+
+    <!-- BUILDER -->
+    <section id="view-builder" class="view-container px-4 md:px-6 pt-4 pb-12 lg:max-w-3xl lg:mx-auto">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="text-2xl font-serif text-plum">Bespoke Treat Studio</h2>
+          <p class="text-sm text-stone-500">Tailor flavors, fillings and crunches</p>
+        </div>
+        <button id="builder-back-btn" class="text-sm font-semibold text-purple hover:underline">← Menu</button>
+      </div>
+
+      <div class="panel mb-4">
+        <h4 class="panel-title">1. Choose treat</h4>
+        <div class="grid grid-cols-4 gap-2" id="custom-category-select">
+          <button data-type="cake" class="treat-type-btn chip on justify-center">Cake</button>
+          <button data-type="cupcake" class="treat-type-btn chip justify-center">Cupcakes</button>
+          <button data-type="donut" class="treat-type-btn chip justify-center">Donuts</button>
+          <button data-type="drink" class="treat-type-btn chip justify-center">Drink</button>
+        </div>
+      </div>
+
+      <div id="dynamic-options-wrapper" class="space-y-4 mb-4"></div>
+
+      <div id="custom-msg-box" class="panel mb-4">
+        <label for="custom-msg-input" class="panel-title">Inscription (max 40 characters)</label>
+        <input type="text" id="custom-msg-input" maxlength="40" placeholder="Happy Birthday! ❤️" class="field">
+        <p id="msg-count" class="text-[11px] text-stone-400 mt-1 text-right">0/40</p>
+      </div>
+
+      <div class="sticky bottom-2 bg-brand text-white p-4 rounded-2xl shadow-lg flex items-center justify-between gap-3">
+        <div>
+          <p class="text-[11px] uppercase tracking-widest opacity-70 font-bold">Custom total</p>
+          <p id="builder-total-price" class="text-xl font-bold">₦0</p>
+        </div>
+        <button id="add-custom-treat-btn" class="px-5 py-3 bg-white text-plum text-sm font-bold rounded-xl hover:opacity-90">Add to Cart 🛒</button>
+      </div>
+    </section>
+
+    <!-- CART + CHECKOUT -->
+    <section id="view-cart" class="view-container px-4 md:px-6 pt-4 pb-16">
+      <div class="flex items-baseline justify-between mb-4">
+        <h2 class="text-2xl font-serif text-plum">Shopping Basket</h2>
+        <button id="clear-cart-btn" class="text-sm text-rose-500 font-semibold hover:underline">Clear all</button>
+      </div>
+
+      <div class="lg:grid lg:grid-cols-2 lg:gap-6 lg:items-start">
+        <div>
+          <div class="space-y-3 mb-5" id="cart-items-container"></div>
+
+          <div class="panel mb-5">
+            <label for="promo-code-input" class="panel-title">Promo code</label>
+            <div class="flex gap-2">
+              <input type="text" id="promo-code-input" placeholder="SUGAR20" maxlength="8" class="field uppercase">
+              <button id="apply-promo-btn" class="btn-primary !w-auto px-5">Apply</button>
+            </div>
+            <p id="promo-feedback" class="text-xs mt-2 font-medium hidden"></p>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel mb-5 space-y-3">
+            <h4 class="text-base font-serif font-bold text-plum">Delivery & pickup</h4>
+            <div>
+              <label for="checkout-name" class="lbl">Full name</label>
+              <input type="text" id="checkout-name" autocomplete="name" placeholder="David Michael" class="field">
+              <p class="err hidden" data-for="name"></p>
+            </div>
+            <fieldset>
+              <legend class="lbl">How do you want it?</legend>
+              <div class="grid grid-cols-2 gap-2">
+                <label class="chip rect justify-center"><input type="radio" name="fulfil" value="pickup" checked class="accent-purple"> Pickup · Free</label>
+                <label class="chip rect justify-center"><input type="radio" name="fulfil" value="delivery" class="accent-purple"> Delivery</label>
+              </div>
+            </fieldset>
+            <div id="zone-wrap" class="hidden">
+              <label for="checkout-neighborhood" class="lbl">Delivery area in Abuja</label>
+              <select id="checkout-neighborhood" class="field"></select>
+            </div>
+            <div id="address-wrap" class="hidden">
+              <label for="checkout-address" class="lbl">Street address</label>
+              <input type="text" id="checkout-address" autocomplete="street-address" placeholder="Banex Bridge, Wuse II" class="field">
+              <p class="err hidden" data-for="address"></p>
+            </div>
+            <div>
+              <label for="checkout-date" class="lbl">Date needed</label>
+              <input type="date" id="checkout-date" class="field">
+              <p id="date-hint" class="text-xs text-stone-500 mt-1"></p>
+              <p class="err hidden" data-for="date"></p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h4 class="text-base font-serif font-bold text-plum mb-3">Order summary</h4>
+            <div class="space-y-2 text-sm text-stone-600">
+              <div class="flex justify-between"><span>Subtotal</span><span id="summary-subtotal" class="text-plum font-medium">₦0</span></div>
+              <div class="flex justify-between"><span>Delivery</span><span id="summary-delivery" class="text-plum font-medium">₦0</span></div>
+              <div id="discount-row" class="hidden justify-between font-semibold text-purple"><span id="discount-label">Discount</span><span id="summary-discount">-₦0</span></div>
+              <div class="pt-2 border-t border-stone-200 flex justify-between items-center font-bold text-plum"><span>Total</span><span id="summary-total" class="text-lg">₦0</span></div>
+            </div>
+            <button id="final-checkout-btn" class="btn-primary mt-4">Confirm & place order 🛍️</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WISHLIST -->
+    <section id="view-wishlist" class="view-container px-4 md:px-6 pt-4 pb-12">
+      <h2 class="text-2xl font-serif text-plum mb-1">My Saved Favorites</h2>
+      <p class="text-sm text-stone-500 mb-4">Quick access to the treats you love</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4" id="wishlist-grid"></div>
+    </section>
+
+    <!-- CONFIRMATION -->
+    <section id="view-confirmation" class="view-container px-6 pt-8 pb-12 text-center max-w-md mx-auto">
+      <div class="w-16 h-16 rounded-full bg-lavender/30 flex items-center justify-center mx-auto mb-3"><iconify-icon icon="lucide:check" class="text-purple text-3xl"></iconify-icon></div>
+      <h2 class="text-3xl font-serif text-plum mb-1">Order Confirmed!</h2>
+      <p class="text-stone-500 text-sm mb-5">Thank you for ordering from Sugar & Crumbs.</p>
+      <div class="panel text-left mb-6 space-y-2">
+        <div class="flex justify-between text-xs"><span class="text-stone-400 font-bold uppercase">Order reference</span><button id="copy-ref-btn" class="text-purple font-bold hover:underline">Copy</button></div>
+        <p id="conf-order-num" class="text-lg font-bold text-plum"></p>
+        <div class="pt-2 border-t border-stone-200 flex justify-between text-sm text-stone-600"><span>Total</span><span id="conf-order-total" class="font-bold text-plum"></span></div>
+        <div class="flex justify-between text-sm text-stone-600"><span>Date</span><span id="conf-order-date" class="font-bold text-plum"></span></div>
+      </div>
+      <button id="continue-shopping-btn" class="btn-primary">Continue shopping 🍰</button>
+    </section>
+
+    <!-- ADMIN -->
+    <section id="view-admin" class="view-container px-4 md:px-6 pt-4 pb-12">
+      <div class="flex items-center justify-between mb-4">
+        <div><h2 class="text-2xl font-serif text-plum">Owner Dashboard</h2><p class="text-sm text-stone-500">Live orders & kitchen schedule</p></div>
+        <button id="admin-logout-btn" class="text-sm font-semibold text-rose-500 hover:underline">Lock admin</button>
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-4 max-w-md">
+        <div class="panel"><p class="text-[11px] uppercase text-stone-400 font-bold">Total orders</p><p id="admin-total-orders" class="text-xl font-bold text-plum">0</p></div>
+        <div class="panel"><p class="text-[11px] uppercase text-stone-400 font-bold">Status</p><p class="text-sm font-bold text-emerald-600 mt-1">Kitchen active 🟢</p></div>
+      </div>
+      <div class="panel mb-4 max-w-md"><h3 class="panel-title">Custom / bulk capacity by date</h3><div id="admin-capacity" class="space-y-1"></div></div>
+      <h3 class="panel-title">Customer order queue</h3>
+      <div class="grid gap-3 md:grid-cols-2" id="admin-orders-list"></div>
+    </section>
+  </main>
+
+  <!-- MODALS -->
+  <div id="admin-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="admin-title">
+    <div class="modal-box max-w-xs">
+      <button id="close-admin-modal" class="icon-btn absolute top-3 right-3" aria-label="Close"><iconify-icon icon="lucide:x"></iconify-icon></button>
+      <h3 id="admin-title" class="text-lg font-serif font-bold text-plum mb-1">Owner authentication</h3>
+      <p class="text-xs text-stone-500 mb-3">Enter the passcode to open the dashboard.</p>
+      <input type="password" id="admin-pass-input" placeholder="Passcode" class="field mb-3">
+      <button id="submit-admin-login" class="btn-primary">Authenticate</button>
+    </div>
+  </div>
+
+  <div id="quick-view-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box max-w-sm">
+      <button id="close-modal-btn" class="icon-btn absolute top-3 right-3 z-10" aria-label="Close"><iconify-icon icon="lucide:x"></iconify-icon></button>
+      <img id="modal-img" src="" alt="" class="w-full h-48 object-cover rounded-2xl mb-3">
+      <span id="modal-category" class="text-[11px] uppercase tracking-widest text-purple font-bold block mb-0.5"></span>
+      <h3 id="modal-title" class="text-xl font-serif text-plum mb-1"></h3>
+      <p id="modal-desc" class="text-sm text-stone-500 leading-relaxed mb-3"></p>
+      <div id="modal-custom-wrap" class="hidden mb-3"><button id="modal-custom-btn" class="chip rect w-full justify-center">✨ Customize this treat</button></div>
+      <div class="flex items-center justify-between pt-3 border-t border-stone-200 gap-3">
+        <div>
+          <span id="modal-price" class="text-lg font-bold text-plum block"></span>
+          <div class="flex items-center gap-3 mt-1">
+            <button id="modal-minus" class="qty-btn" aria-label="Decrease"><iconify-icon icon="lucide:minus"></iconify-icon></button>
+            <span id="modal-qty" class="text-sm font-bold w-4 text-center">1</span>
+            <button id="modal-plus" class="qty-btn" aria-label="Increase"><iconify-icon icon="lucide:plus"></iconify-icon></button>
+          </div>
+        </div>
+        <button id="modal-add-btn" class="btn-primary !w-auto px-5">Add to Cart 🛒</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <footer class="lg:hidden shrink-0 bg-card border-t border-stone-200 z-30 pb-[env(safe-area-inset-bottom)]">
+    <nav class="flex justify-around items-center h-16">
+      <a href="#" data-nav="landing" class="nav-item flex flex-col items-center gap-0.5 text-plum font-semibold min-w-[56px]"><iconify-icon icon="lucide:home" class="text-xl"></iconify-icon><span class="text-[11px]">Home</span></a>
+      <a href="#" data-nav="home" class="nav-item flex flex-col items-center gap-0.5 text-stone-400 min-w-[56px]"><iconify-icon icon="lucide:store" class="text-xl"></iconify-icon><span class="text-[11px]">Menu</span></a>
+      <a href="#" data-nav="builder" class="nav-item flex flex-col items-center gap-0.5 text-stone-400 min-w-[64px]"><iconify-icon icon="lucide:cake" class="text-xl"></iconify-icon><span class="text-[11px]">Customizer</span></a>
+      <a href="#" data-nav="wishlist" class="nav-item flex flex-col items-center gap-0.5 text-stone-400 min-w-[64px]"><iconify-icon icon="lucide:heart" class="text-xl"></iconify-icon><span class="text-[11px]">Wishlist</span></a>
+      <a href="#" data-nav="cart" class="nav-item flex flex-col items-center gap-0.5 text-stone-400 min-w-[64px]"><iconify-icon icon="lucide:shopping-bag" class="text-xl"></iconify-icon><span class="text-[11px]">Cart</span></a>
+    </nav>
+  </footer>
+
+  <button id="to-top" aria-label="Back to top" class="icon-btn absolute bottom-24 right-4 lg:bottom-8 z-40 transition-opacity opacity-0 pointer-events-none"><iconify-icon icon="lucide:arrow-up"></iconify-icon></button>
+  <div id="toast-container" class="absolute bottom-24 lg:bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none w-max max-w-[90%]"></div>
+</div>
+<script src="script.js" defer></script>
+</body>
+</html>
